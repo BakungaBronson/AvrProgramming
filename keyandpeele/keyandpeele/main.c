@@ -24,7 +24,7 @@ unsigned char word8[] = "P4: Open";
 //initializing all integer variables to be used
 int y,d,o,x,f,u,l,t,i;
 int wer = 0;
-int counter = 10; //Grazing counter
+int counter = 0; //Grazing counter
 
 //Function to increment the timer
 void diplayOnScreen(int time_counter){
