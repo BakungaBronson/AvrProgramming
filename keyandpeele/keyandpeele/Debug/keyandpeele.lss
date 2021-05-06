@@ -3,13 +3,13 @@ keyandpeele.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         0000004a  00800200  00001c06  00001c9a  2**0
+  0 .data         00000048  00800200  00001c06  00001c9a  2**0
                   CONTENTS, ALLOC, LOAD, DATA
   1 .text         00001c06  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          00000014  0080024a  0080024a  00001ce4  2**0
+  2 .bss          00000016  00800248  00800248  00001ce2  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  00001ce4  2**0
+  3 .comment      00000030  00000000  00000000  00001ce2  2**0
                   CONTENTS, READONLY
   4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00001d14  2**2
                   CONTENTS, READONLY
@@ -23,11 +23,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
   9 .debug_frame  0000008c  00000000  00000000  000071e0  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    000005ea  00000000  00000000  0000726c  2**0
+ 10 .debug_str    00000603  00000000  00000000  0000726c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    000023e2  00000000  00000000  00007856  2**0
+ 11 .debug_loc    000023e2  00000000  00000000  0000786f  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000030  00000000  00000000  00009c38  2**0
+ 12 .debug_ranges 00000030  00000000  00000000  00009c51  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -169,13 +169,13 @@ Disassembly of section .text:
      102:	02 c0       	rjmp	.+4      	; 0x108 <__do_copy_data+0x14>
      104:	07 90       	elpm	r0, Z+
      106:	0d 92       	st	X+, r0
-     108:	aa 34       	cpi	r26, 0x4A	; 74
+     108:	a8 34       	cpi	r26, 0x48	; 72
      10a:	b1 07       	cpc	r27, r17
      10c:	d9 f7       	brne	.-10     	; 0x104 <__do_copy_data+0x10>
 
 0000010e <__do_clear_bss>:
      10e:	22 e0       	ldi	r18, 0x02	; 2
-     110:	aa e4       	ldi	r26, 0x4A	; 74
+     110:	a8 e4       	ldi	r26, 0x48	; 72
      112:	b2 e0       	ldi	r27, 0x02	; 2
      114:	01 c0       	rjmp	.+2      	; 0x118 <.do_clear_bss_start>
 
@@ -195,7 +195,7 @@ Disassembly of section .text:
 00000126 <diplayOnScreen>:
 int y,d,o,x,f,u,l,t,i;
 int wer = 0;
-int counter = 10; //Grazing counter
+int counter = 0; //Grazing counter
 
 //Function to increment the timer
 void diplayOnScreen(int time_counter){
@@ -505,7 +505,7 @@ void closer(){
      2e0:	23 c0       	rjmp	.+70     	; 0x328 <closer+0xde>
 		PORTJ = word[y];
      2e2:	fc 01       	movw	r30, r24
-     2e4:	ef 5b       	subi	r30, 0xBF	; 191
+     2e4:	e1 5c       	subi	r30, 0xC1	; 193
      2e6:	fd 4f       	sbci	r31, 0xFD	; 253
      2e8:	80 81       	ld	r24, Z
      2ea:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
@@ -560,7 +560,7 @@ void closer(){
      33e:	23 c0       	rjmp	.+70     	; 0x386 <closer+0x13c>
 		PORTJ = word2[x];
      340:	fc 01       	movw	r30, r24
-     342:	e8 5c       	subi	r30, 0xC8	; 200
+     342:	ea 5c       	subi	r30, 0xCA	; 202
      344:	fd 4f       	sbci	r31, 0xFD	; 253
      346:	80 81       	ld	r24, Z
      348:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
@@ -615,7 +615,7 @@ void closer(){
      39c:	23 c0       	rjmp	.+70     	; 0x3e4 <closer+0x19a>
 		PORTJ = word3[d];
      39e:	fc 01       	movw	r30, r24
-     3a0:	e1 5d       	subi	r30, 0xD1	; 209
+     3a0:	e3 5d       	subi	r30, 0xD3	; 211
      3a2:	fd 4f       	sbci	r31, 0xFD	; 253
      3a4:	80 81       	ld	r24, Z
      3a6:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
@@ -670,7 +670,7 @@ void closer(){
      3fa:	23 c0       	rjmp	.+70     	; 0x442 <__LOCK_REGION_LENGTH__+0x42>
 		PORTJ = word4[o];
      3fc:	fc 01       	movw	r30, r24
-     3fe:	ea 5d       	subi	r30, 0xDA	; 218
+     3fe:	ec 5d       	subi	r30, 0xDC	; 220
      400:	fd 4f       	sbci	r31, 0xFD	; 253
      402:	80 81       	ld	r24, Z
      404:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
@@ -912,19 +912,19 @@ void padd(int green_led_value, int red_led_value){
 	}
 	//add 1 minute to grazing counter
 	counter++;
-     592:	80 91 00 02 	lds	r24, 0x0200	; 0x800200 <__DATA_REGION_ORIGIN__>
-     596:	90 91 01 02 	lds	r25, 0x0201	; 0x800201 <__DATA_REGION_ORIGIN__+0x1>
+     592:	80 91 48 02 	lds	r24, 0x0248	; 0x800248 <__data_end>
+     596:	90 91 49 02 	lds	r25, 0x0249	; 0x800249 <__data_end+0x1>
      59a:	01 96       	adiw	r24, 0x01	; 1
-     59c:	90 93 01 02 	sts	0x0201, r25	; 0x800201 <__DATA_REGION_ORIGIN__+0x1>
-     5a0:	80 93 00 02 	sts	0x0200, r24	; 0x800200 <__DATA_REGION_ORIGIN__>
+     59c:	90 93 49 02 	sts	0x0249, r25	; 0x800249 <__data_end+0x1>
+     5a0:	80 93 48 02 	sts	0x0248, r24	; 0x800248 <__data_end>
 	for (i = 0; i < 600; i++)
      5a4:	10 92 57 02 	sts	0x0257, r1	; 0x800257 <i+0x1>
      5a8:	10 92 56 02 	sts	0x0256, r1	; 0x800256 <i>
      5ac:	14 c0       	rjmp	.+40     	; 0x5d6 <padd+0xf4>
 	{
 		diplayOnScreen( counter );
-     5ae:	80 91 00 02 	lds	r24, 0x0200	; 0x800200 <__DATA_REGION_ORIGIN__>
-     5b2:	90 91 01 02 	lds	r25, 0x0201	; 0x800201 <__DATA_REGION_ORIGIN__+0x1>
+     5ae:	80 91 48 02 	lds	r24, 0x0248	; 0x800248 <__data_end>
+     5b2:	90 91 49 02 	lds	r25, 0x0249	; 0x800249 <__data_end+0x1>
      5b6:	b7 dd       	rcall	.-1170   	; 0x126 <diplayOnScreen>
      5b8:	87 ea       	ldi	r24, 0xA7	; 167
      5ba:	91 e6       	ldi	r25, 0x61	; 97
@@ -954,19 +954,19 @@ void padd(int green_led_value, int red_led_value){
 	}
 	//add 1 minute to grazing counter
 	counter++;
-     5e4:	80 91 00 02 	lds	r24, 0x0200	; 0x800200 <__DATA_REGION_ORIGIN__>
-     5e8:	90 91 01 02 	lds	r25, 0x0201	; 0x800201 <__DATA_REGION_ORIGIN__+0x1>
+     5e4:	80 91 48 02 	lds	r24, 0x0248	; 0x800248 <__data_end>
+     5e8:	90 91 49 02 	lds	r25, 0x0249	; 0x800249 <__data_end+0x1>
      5ec:	01 96       	adiw	r24, 0x01	; 1
-     5ee:	90 93 01 02 	sts	0x0201, r25	; 0x800201 <__DATA_REGION_ORIGIN__+0x1>
-     5f2:	80 93 00 02 	sts	0x0200, r24	; 0x800200 <__DATA_REGION_ORIGIN__>
+     5ee:	90 93 49 02 	sts	0x0249, r25	; 0x800249 <__data_end+0x1>
+     5f2:	80 93 48 02 	sts	0x0248, r24	; 0x800248 <__data_end>
 	for (i = 0; i < 600; i++)
      5f6:	10 92 57 02 	sts	0x0257, r1	; 0x800257 <i+0x1>
      5fa:	10 92 56 02 	sts	0x0256, r1	; 0x800256 <i>
      5fe:	14 c0       	rjmp	.+40     	; 0x628 <padd+0x146>
 	{
 		diplayOnScreen( counter );
-     600:	80 91 00 02 	lds	r24, 0x0200	; 0x800200 <__DATA_REGION_ORIGIN__>
-     604:	90 91 01 02 	lds	r25, 0x0201	; 0x800201 <__DATA_REGION_ORIGIN__+0x1>
+     600:	80 91 48 02 	lds	r24, 0x0248	; 0x800248 <__data_end>
+     604:	90 91 49 02 	lds	r25, 0x0249	; 0x800249 <__data_end+0x1>
      608:	8e dd       	rcall	.-1252   	; 0x126 <diplayOnScreen>
      60a:	87 ea       	ldi	r24, 0xA7	; 167
      60c:	91 e6       	ldi	r25, 0x61	; 97
@@ -996,19 +996,19 @@ void padd(int green_led_value, int red_led_value){
 	}
 	//add 1 minute to grazing counter
 	counter++;
-     636:	80 91 00 02 	lds	r24, 0x0200	; 0x800200 <__DATA_REGION_ORIGIN__>
-     63a:	90 91 01 02 	lds	r25, 0x0201	; 0x800201 <__DATA_REGION_ORIGIN__+0x1>
+     636:	80 91 48 02 	lds	r24, 0x0248	; 0x800248 <__data_end>
+     63a:	90 91 49 02 	lds	r25, 0x0249	; 0x800249 <__data_end+0x1>
      63e:	01 96       	adiw	r24, 0x01	; 1
-     640:	90 93 01 02 	sts	0x0201, r25	; 0x800201 <__DATA_REGION_ORIGIN__+0x1>
-     644:	80 93 00 02 	sts	0x0200, r24	; 0x800200 <__DATA_REGION_ORIGIN__>
+     640:	90 93 49 02 	sts	0x0249, r25	; 0x800249 <__data_end+0x1>
+     644:	80 93 48 02 	sts	0x0248, r24	; 0x800248 <__data_end>
 	for (i = 0; i < 600; i++)
      648:	10 92 57 02 	sts	0x0257, r1	; 0x800257 <i+0x1>
      64c:	10 92 56 02 	sts	0x0256, r1	; 0x800256 <i>
      650:	14 c0       	rjmp	.+40     	; 0x67a <padd+0x198>
 	{
 		diplayOnScreen( counter );
-     652:	80 91 00 02 	lds	r24, 0x0200	; 0x800200 <__DATA_REGION_ORIGIN__>
-     656:	90 91 01 02 	lds	r25, 0x0201	; 0x800201 <__DATA_REGION_ORIGIN__+0x1>
+     652:	80 91 48 02 	lds	r24, 0x0248	; 0x800248 <__data_end>
+     656:	90 91 49 02 	lds	r25, 0x0249	; 0x800249 <__data_end+0x1>
      65a:	65 dd       	rcall	.-1334   	; 0x126 <diplayOnScreen>
      65c:	87 ea       	ldi	r24, 0xA7	; 167
      65e:	91 e6       	ldi	r25, 0x61	; 97
@@ -1050,11 +1050,11 @@ void padd(int green_led_value, int red_led_value){
      696:	85 b9       	out	0x05, r24	; 5
 	//add 1 minute to grazing counter
 	counter++;
-     698:	80 91 00 02 	lds	r24, 0x0200	; 0x800200 <__DATA_REGION_ORIGIN__>
-     69c:	90 91 01 02 	lds	r25, 0x0201	; 0x800201 <__DATA_REGION_ORIGIN__+0x1>
+     698:	80 91 48 02 	lds	r24, 0x0248	; 0x800248 <__data_end>
+     69c:	90 91 49 02 	lds	r25, 0x0249	; 0x800249 <__data_end+0x1>
      6a0:	01 96       	adiw	r24, 0x01	; 1
-     6a2:	90 93 01 02 	sts	0x0201, r25	; 0x800201 <__DATA_REGION_ORIGIN__+0x1>
-     6a6:	80 93 00 02 	sts	0x0200, r24	; 0x800200 <__DATA_REGION_ORIGIN__>
+     6a2:	90 93 49 02 	sts	0x0249, r25	; 0x800249 <__data_end+0x1>
+     6a6:	80 93 48 02 	sts	0x0248, r24	; 0x800248 <__data_end>
 	diplayOnScreen( counter );
      6aa:	3d dd       	rcall	.-1414   	; 0x126 <diplayOnScreen>
 	//light red led
@@ -1062,8 +1062,8 @@ void padd(int green_led_value, int red_led_value){
 	{
 		diplayOnScreen( counter );
      6ac:	39 c0       	rjmp	.+114    	; 0x720 <padd+0x23e>
-     6ae:	80 91 00 02 	lds	r24, 0x0200	; 0x800200 <__DATA_REGION_ORIGIN__>
-     6b2:	90 91 01 02 	lds	r25, 0x0201	; 0x800201 <__DATA_REGION_ORIGIN__+0x1>
+     6ae:	80 91 48 02 	lds	r24, 0x0248	; 0x800248 <__data_end>
+     6b2:	90 91 49 02 	lds	r25, 0x0249	; 0x800249 <__data_end+0x1>
      6b6:	37 dd       	rcall	.-1426   	; 0x126 <diplayOnScreen>
 		//while loop for creating 60 seconds
 		PORTB ^= red_led_value;
@@ -1096,8 +1096,8 @@ void padd(int green_led_value, int red_led_value){
 			_delay_ms(100);
 		}
 		if (wer == 40){
-     6f6:	80 91 4a 02 	lds	r24, 0x024A	; 0x80024a <__data_end>
-     6fa:	90 91 4b 02 	lds	r25, 0x024B	; 0x80024b <__data_end+0x1>
+     6f6:	80 91 4a 02 	lds	r24, 0x024A	; 0x80024a <wer>
+     6fa:	90 91 4b 02 	lds	r25, 0x024B	; 0x80024b <wer+0x1>
      6fe:	88 97       	sbiw	r24, 0x28	; 40
      700:	31 f4       	brne	.+12     	; 0x70e <padd+0x22c>
 			//if 40 seconds pass lught green led
@@ -1112,19 +1112,19 @@ void padd(int green_led_value, int red_led_value){
      70c:	85 b9       	out	0x05, r24	; 5
 		}
 		wer++;
-     70e:	80 91 4a 02 	lds	r24, 0x024A	; 0x80024a <__data_end>
-     712:	90 91 4b 02 	lds	r25, 0x024B	; 0x80024b <__data_end+0x1>
+     70e:	80 91 4a 02 	lds	r24, 0x024A	; 0x80024a <wer>
+     712:	90 91 4b 02 	lds	r25, 0x024B	; 0x80024b <wer+0x1>
      716:	01 96       	adiw	r24, 0x01	; 1
-     718:	90 93 4b 02 	sts	0x024B, r25	; 0x80024b <__data_end+0x1>
-     71c:	80 93 4a 02 	sts	0x024A, r24	; 0x80024a <__data_end>
+     718:	90 93 4b 02 	sts	0x024B, r25	; 0x80024b <wer+0x1>
+     71c:	80 93 4a 02 	sts	0x024A, r24	; 0x80024a <wer>
 	PORTB &= ~(green_led_value);
 	//add 1 minute to grazing counter
 	counter++;
 	diplayOnScreen( counter );
 	//light red led
 	while (wer < 60)
-     720:	80 91 4a 02 	lds	r24, 0x024A	; 0x80024a <__data_end>
-     724:	90 91 4b 02 	lds	r25, 0x024B	; 0x80024b <__data_end+0x1>
+     720:	80 91 4a 02 	lds	r24, 0x024A	; 0x80024a <wer>
+     724:	90 91 4b 02 	lds	r25, 0x024B	; 0x80024b <wer+0x1>
      728:	cc 97       	sbiw	r24, 0x3c	; 60
      72a:	0c f4       	brge	.+2      	; 0x72e <padd+0x24c>
      72c:	c0 cf       	rjmp	.-128    	; 0x6ae <padd+0x1cc>
@@ -1145,8 +1145,8 @@ void padd(int green_led_value, int red_led_value){
 	{
 		diplayOnScreen( counter );
      740:	14 c0       	rjmp	.+40     	; 0x76a <padd+0x288>
-     742:	80 91 00 02 	lds	r24, 0x0200	; 0x800200 <__DATA_REGION_ORIGIN__>
-     746:	90 91 01 02 	lds	r25, 0x0201	; 0x800201 <__DATA_REGION_ORIGIN__+0x1>
+     742:	80 91 48 02 	lds	r24, 0x0248	; 0x800248 <__data_end>
+     746:	90 91 49 02 	lds	r25, 0x0249	; 0x800249 <__data_end+0x1>
      74a:	ed dc       	rcall	.-1574   	; 0x126 <diplayOnScreen>
      74c:	87 ea       	ldi	r24, 0xA7	; 167
      74e:	91 e6       	ldi	r25, 0x61	; 97
@@ -1186,14 +1186,14 @@ void padd(int green_led_value, int red_led_value){
      782:	85 b9       	out	0x05, r24	; 5
 	//light red led
 	wer = 0;
-     784:	10 92 4b 02 	sts	0x024B, r1	; 0x80024b <__data_end+0x1>
-     788:	10 92 4a 02 	sts	0x024A, r1	; 0x80024a <__data_end>
+     784:	10 92 4b 02 	sts	0x024B, r1	; 0x80024b <wer+0x1>
+     788:	10 92 4a 02 	sts	0x024A, r1	; 0x80024a <wer>
 	while (wer < 60)
 	{
 		diplayOnScreen( counter );
      78c:	39 c0       	rjmp	.+114    	; 0x800 <padd+0x31e>
-     78e:	80 91 00 02 	lds	r24, 0x0200	; 0x800200 <__DATA_REGION_ORIGIN__>
-     792:	90 91 01 02 	lds	r25, 0x0201	; 0x800201 <__DATA_REGION_ORIGIN__+0x1>
+     78e:	80 91 48 02 	lds	r24, 0x0248	; 0x800248 <__data_end>
+     792:	90 91 49 02 	lds	r25, 0x0249	; 0x800249 <__data_end+0x1>
      796:	c7 dc       	rcall	.-1650   	; 0x126 <diplayOnScreen>
 		PORTB ^= red_led_value;
      798:	85 b1       	in	r24, 0x05	; 5
@@ -1224,8 +1224,8 @@ void padd(int green_led_value, int red_led_value){
 			_delay_ms(100);
 		}
 		if (wer == 40){
-     7d6:	80 91 4a 02 	lds	r24, 0x024A	; 0x80024a <__data_end>
-     7da:	90 91 4b 02 	lds	r25, 0x024B	; 0x80024b <__data_end+0x1>
+     7d6:	80 91 4a 02 	lds	r24, 0x024A	; 0x80024a <wer>
+     7da:	90 91 4b 02 	lds	r25, 0x024B	; 0x80024b <wer+0x1>
      7de:	88 97       	sbiw	r24, 0x28	; 40
      7e0:	31 f4       	brne	.+12     	; 0x7ee <padd+0x30c>
 			PORTE &= ~(1<<0);
@@ -1239,19 +1239,19 @@ void padd(int green_led_value, int red_led_value){
      7ec:	85 b9       	out	0x05, r24	; 5
 		}
 		wer++;
-     7ee:	80 91 4a 02 	lds	r24, 0x024A	; 0x80024a <__data_end>
-     7f2:	90 91 4b 02 	lds	r25, 0x024B	; 0x80024b <__data_end+0x1>
+     7ee:	80 91 4a 02 	lds	r24, 0x024A	; 0x80024a <wer>
+     7f2:	90 91 4b 02 	lds	r25, 0x024B	; 0x80024b <wer+0x1>
      7f6:	01 96       	adiw	r24, 0x01	; 1
-     7f8:	90 93 4b 02 	sts	0x024B, r25	; 0x80024b <__data_end+0x1>
-     7fc:	80 93 4a 02 	sts	0x024A, r24	; 0x80024a <__data_end>
+     7f8:	90 93 4b 02 	sts	0x024B, r25	; 0x80024b <wer+0x1>
+     7fc:	80 93 4a 02 	sts	0x024A, r24	; 0x80024a <wer>
 	PORTE |= (1<<0);
 	//switch off green led
 	PORTB &= ~(green_led_value);
 	//light red led
 	wer = 0;
 	while (wer < 60)
-     800:	80 91 4a 02 	lds	r24, 0x024A	; 0x80024a <__data_end>
-     804:	90 91 4b 02 	lds	r25, 0x024B	; 0x80024b <__data_end+0x1>
+     800:	80 91 4a 02 	lds	r24, 0x024A	; 0x80024a <wer>
+     804:	90 91 4b 02 	lds	r25, 0x024B	; 0x80024b <wer+0x1>
      808:	cc 97       	sbiw	r24, 0x3c	; 60
      80a:	0c f4       	brge	.+2      	; 0x80e <padd+0x32c>
      80c:	c0 cf       	rjmp	.-128    	; 0x78e <padd+0x2ac>
@@ -1270,8 +1270,8 @@ void padd(int green_led_value, int red_led_value){
 	{
 		diplayOnScreen( counter );
      81c:	14 c0       	rjmp	.+40     	; 0x846 <padd+0x364>
-     81e:	80 91 00 02 	lds	r24, 0x0200	; 0x800200 <__DATA_REGION_ORIGIN__>
-     822:	90 91 01 02 	lds	r25, 0x0201	; 0x800201 <__DATA_REGION_ORIGIN__+0x1>
+     81e:	80 91 48 02 	lds	r24, 0x0248	; 0x800248 <__data_end>
+     822:	90 91 49 02 	lds	r25, 0x0249	; 0x800249 <__data_end+0x1>
      826:	7f dc       	rcall	.-1794   	; 0x126 <diplayOnScreen>
      828:	87 ea       	ldi	r24, 0xA7	; 167
      82a:	91 e6       	ldi	r25, 0x61	; 97
@@ -1301,19 +1301,19 @@ void padd(int green_led_value, int red_led_value){
 	}
 	//add 1 minute to grazing counter
 	counter++;
-     854:	80 91 00 02 	lds	r24, 0x0200	; 0x800200 <__DATA_REGION_ORIGIN__>
-     858:	90 91 01 02 	lds	r25, 0x0201	; 0x800201 <__DATA_REGION_ORIGIN__+0x1>
+     854:	80 91 48 02 	lds	r24, 0x0248	; 0x800248 <__data_end>
+     858:	90 91 49 02 	lds	r25, 0x0249	; 0x800249 <__data_end+0x1>
      85c:	01 96       	adiw	r24, 0x01	; 1
-     85e:	90 93 01 02 	sts	0x0201, r25	; 0x800201 <__DATA_REGION_ORIGIN__+0x1>
-     862:	80 93 00 02 	sts	0x0200, r24	; 0x800200 <__DATA_REGION_ORIGIN__>
+     85e:	90 93 49 02 	sts	0x0249, r25	; 0x800249 <__data_end+0x1>
+     862:	80 93 48 02 	sts	0x0248, r24	; 0x800248 <__data_end>
 	for (i = 0; i < 600; i++)
      866:	10 92 57 02 	sts	0x0257, r1	; 0x800257 <i+0x1>
      86a:	10 92 56 02 	sts	0x0256, r1	; 0x800256 <i>
 	{
 		diplayOnScreen( counter );
      86e:	14 c0       	rjmp	.+40     	; 0x898 <padd+0x3b6>
-     870:	80 91 00 02 	lds	r24, 0x0200	; 0x800200 <__DATA_REGION_ORIGIN__>
-     874:	90 91 01 02 	lds	r25, 0x0201	; 0x800201 <__DATA_REGION_ORIGIN__+0x1>
+     870:	80 91 48 02 	lds	r24, 0x0248	; 0x800248 <__data_end>
+     874:	90 91 49 02 	lds	r25, 0x0249	; 0x800249 <__data_end+0x1>
      878:	56 dc       	rcall	.-1876   	; 0x126 <diplayOnScreen>
      87a:	87 ea       	ldi	r24, 0xA7	; 167
      87c:	91 e6       	ldi	r25, 0x61	; 97
@@ -1343,19 +1343,19 @@ void padd(int green_led_value, int red_led_value){
 	}
 	//add 1 minute to grazing counter
 	counter++;
-     8a6:	80 91 00 02 	lds	r24, 0x0200	; 0x800200 <__DATA_REGION_ORIGIN__>
-     8aa:	90 91 01 02 	lds	r25, 0x0201	; 0x800201 <__DATA_REGION_ORIGIN__+0x1>
+     8a6:	80 91 48 02 	lds	r24, 0x0248	; 0x800248 <__data_end>
+     8aa:	90 91 49 02 	lds	r25, 0x0249	; 0x800249 <__data_end+0x1>
      8ae:	01 96       	adiw	r24, 0x01	; 1
-     8b0:	90 93 01 02 	sts	0x0201, r25	; 0x800201 <__DATA_REGION_ORIGIN__+0x1>
-     8b4:	80 93 00 02 	sts	0x0200, r24	; 0x800200 <__DATA_REGION_ORIGIN__>
+     8b0:	90 93 49 02 	sts	0x0249, r25	; 0x800249 <__data_end+0x1>
+     8b4:	80 93 48 02 	sts	0x0248, r24	; 0x800248 <__data_end>
 	for (i = 0; i < 600; i++)
      8b8:	10 92 57 02 	sts	0x0257, r1	; 0x800257 <i+0x1>
      8bc:	10 92 56 02 	sts	0x0256, r1	; 0x800256 <i>
 	{
 		diplayOnScreen( counter );
      8c0:	15 c0       	rjmp	.+42     	; 0x8ec <padd+0x40a>
-     8c2:	80 91 00 02 	lds	r24, 0x0200	; 0x800200 <__DATA_REGION_ORIGIN__>
-     8c6:	90 91 01 02 	lds	r25, 0x0201	; 0x800201 <__DATA_REGION_ORIGIN__+0x1>
+     8c2:	80 91 48 02 	lds	r24, 0x0248	; 0x800248 <__data_end>
+     8c6:	90 91 49 02 	lds	r25, 0x0249	; 0x800249 <__data_end+0x1>
      8ca:	2d dc       	rcall	.-1958   	; 0x126 <diplayOnScreen>
      8cc:	87 ea       	ldi	r24, 0xA7	; 167
      8ce:	91 e6       	ldi	r25, 0x61	; 97
@@ -1396,11 +1396,11 @@ void padd(int green_led_value, int red_led_value){
 	//add 1 minute to grazing counter
 	counter++;
      904:	c5 b9       	out	0x05, r28	; 5
-     906:	80 91 00 02 	lds	r24, 0x0200	; 0x800200 <__DATA_REGION_ORIGIN__>
-     90a:	90 91 01 02 	lds	r25, 0x0201	; 0x800201 <__DATA_REGION_ORIGIN__+0x1>
+     906:	80 91 48 02 	lds	r24, 0x0248	; 0x800248 <__data_end>
+     90a:	90 91 49 02 	lds	r25, 0x0249	; 0x800249 <__data_end+0x1>
      90e:	01 96       	adiw	r24, 0x01	; 1
-     910:	90 93 01 02 	sts	0x0201, r25	; 0x800201 <__DATA_REGION_ORIGIN__+0x1>
-     914:	80 93 00 02 	sts	0x0200, r24	; 0x800200 <__DATA_REGION_ORIGIN__>
+     910:	90 93 49 02 	sts	0x0249, r25	; 0x800249 <__data_end+0x1>
+     914:	80 93 48 02 	sts	0x0248, r24	; 0x800248 <__data_end>
 	diplayOnScreen( counter );
      918:	06 dc       	rcall	.-2036   	; 0x126 <diplayOnScreen>
 	//open main door
@@ -1523,8 +1523,8 @@ void padd(int green_led_value, int red_led_value){
      9ac:	7f 99       	sbic	0x0f, 7	; 15
      9ae:	c7 c1       	rjmp	.+910    	; 0xd3e <main+0x418>
 			diplayOnScreen( counter );
-     9b0:	80 91 00 02 	lds	r24, 0x0200	; 0x800200 <__DATA_REGION_ORIGIN__>
-     9b4:	90 91 01 02 	lds	r25, 0x0201	; 0x800201 <__DATA_REGION_ORIGIN__+0x1>
+     9b0:	80 91 48 02 	lds	r24, 0x0248	; 0x800248 <__data_end>
+     9b4:	90 91 49 02 	lds	r25, 0x0249	; 0x800249 <__data_end+0x1>
 			//change all door statuses to open
 			opener();
      9b8:	b6 db       	rcall	.-2196   	; 0x126 <diplayOnScreen>
@@ -1536,7 +1536,7 @@ void padd(int green_led_value, int red_led_value){
      9c4:	23 c0       	rjmp	.+70     	; 0xa0c <main+0xe6>
 				PORTJ = word5[f];
      9c6:	fc 01       	movw	r30, r24
-     9c8:	e3 5e       	subi	r30, 0xE3	; 227
+     9c8:	e5 5e       	subi	r30, 0xE5	; 229
      9ca:	fd 4f       	sbci	r31, 0xFD	; 253
      9cc:	80 81       	ld	r24, Z
      9ce:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
@@ -1590,7 +1590,7 @@ void padd(int green_led_value, int red_led_value){
      a22:	23 c0       	rjmp	.+70     	; 0xa6a <main+0x144>
 				PORTJ = word6[u];
      a24:	fc 01       	movw	r30, r24
-     a26:	ec 5e       	subi	r30, 0xEC	; 236
+     a26:	ee 5e       	subi	r30, 0xEE	; 238
      a28:	fd 4f       	sbci	r31, 0xFD	; 253
      a2a:	80 81       	ld	r24, Z
      a2c:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
@@ -1644,7 +1644,7 @@ void padd(int green_led_value, int red_led_value){
      a80:	23 c0       	rjmp	.+70     	; 0xac8 <main+0x1a2>
 				PORTJ = word7[l];
      a82:	fc 01       	movw	r30, r24
-     a84:	e5 5f       	subi	r30, 0xF5	; 245
+     a84:	e7 5f       	subi	r30, 0xF7	; 247
      a86:	fd 4f       	sbci	r31, 0xFD	; 253
      a88:	80 81       	ld	r24, Z
      a8a:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
@@ -1698,8 +1698,8 @@ void padd(int green_led_value, int red_led_value){
      ade:	23 c0       	rjmp	.+70     	; 0xb26 <main+0x200>
 				PORTJ = word8[t];
      ae0:	fc 01       	movw	r30, r24
-     ae2:	ee 5f       	subi	r30, 0xFE	; 254
-     ae4:	fd 4f       	sbci	r31, 0xFD	; 253
+     ae2:	e0 50       	subi	r30, 0x00	; 0
+     ae4:	fe 4f       	sbci	r31, 0xFE	; 254
      ae6:	80 81       	ld	r24, Z
      ae8:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
 				PORTH &= ~(1<<enable);
@@ -1758,7 +1758,7 @@ void padd(int green_led_value, int red_led_value){
      b46:	23 c0       	rjmp	.+70     	; 0xb8e <main+0x268>
 						PORTJ = word5[f];
      b48:	fc 01       	movw	r30, r24
-     b4a:	e3 5e       	subi	r30, 0xE3	; 227
+     b4a:	e5 5e       	subi	r30, 0xE5	; 229
      b4c:	fd 4f       	sbci	r31, 0xFD	; 253
      b4e:	80 81       	ld	r24, Z
      b50:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
@@ -1812,7 +1812,7 @@ void padd(int green_led_value, int red_led_value){
      ba4:	23 c0       	rjmp	.+70     	; 0xbec <main+0x2c6>
 						PORTJ = word6[u];
      ba6:	fc 01       	movw	r30, r24
-     ba8:	ec 5e       	subi	r30, 0xEC	; 236
+     ba8:	ee 5e       	subi	r30, 0xEE	; 238
      baa:	fd 4f       	sbci	r31, 0xFD	; 253
      bac:	80 81       	ld	r24, Z
      bae:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
@@ -1866,7 +1866,7 @@ void padd(int green_led_value, int red_led_value){
      c02:	23 c0       	rjmp	.+70     	; 0xc4a <main+0x324>
 						PORTJ = word7[l];
      c04:	fc 01       	movw	r30, r24
-     c06:	e5 5f       	subi	r30, 0xF5	; 245
+     c06:	e7 5f       	subi	r30, 0xF7	; 247
      c08:	fd 4f       	sbci	r31, 0xFD	; 253
      c0a:	80 81       	ld	r24, Z
      c0c:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
@@ -1920,8 +1920,8 @@ void padd(int green_led_value, int red_led_value){
      c60:	23 c0       	rjmp	.+70     	; 0xca8 <main+0x382>
 						PORTJ = word8[t];
      c62:	fc 01       	movw	r30, r24
-     c64:	ee 5f       	subi	r30, 0xFE	; 254
-     c66:	fd 4f       	sbci	r31, 0xFD	; 253
+     c64:	e0 50       	subi	r30, 0x00	; 0
+     c66:	fe 4f       	sbci	r31, 0xFE	; 254
      c68:	80 81       	ld	r24, Z
      c6a:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
 						PORTH &= ~(1<<enable);
@@ -1969,14 +1969,14 @@ void padd(int green_led_value, int red_led_value){
 					}
 					//light red led
 					wer = 0;
-     cb6:	10 92 4b 02 	sts	0x024B, r1	; 0x80024b <__data_end+0x1>
-     cba:	10 92 4a 02 	sts	0x024A, r1	; 0x80024a <__data_end>
+     cb6:	10 92 4b 02 	sts	0x024B, r1	; 0x80024b <wer+0x1>
+     cba:	10 92 4a 02 	sts	0x024A, r1	; 0x80024a <wer>
 					while (wer < 60)
      cbe:	36 c0       	rjmp	.+108    	; 0xd2c <main+0x406>
 					{
 						diplayOnScreen( counter );
-     cc0:	80 91 00 02 	lds	r24, 0x0200	; 0x800200 <__DATA_REGION_ORIGIN__>
-     cc4:	90 91 01 02 	lds	r25, 0x0201	; 0x800201 <__DATA_REGION_ORIGIN__+0x1>
+     cc0:	80 91 48 02 	lds	r24, 0x0248	; 0x800248 <__data_end>
+     cc4:	90 91 49 02 	lds	r25, 0x0249	; 0x800249 <__data_end+0x1>
      cc8:	2e da       	rcall	.-2980   	; 0x126 <diplayOnScreen>
 						PORTB ^= 0xF0;
      cca:	95 b1       	in	r25, 0x05	; 5
@@ -2006,8 +2006,8 @@ void padd(int green_led_value, int red_led_value){
 							_delay_ms(100);
 						}
 						if (wer == 40){
-     d06:	80 91 4a 02 	lds	r24, 0x024A	; 0x80024a <__data_end>
-     d0a:	90 91 4b 02 	lds	r25, 0x024B	; 0x80024b <__data_end+0x1>
+     d06:	80 91 4a 02 	lds	r24, 0x024A	; 0x80024a <wer>
+     d0a:	90 91 4b 02 	lds	r25, 0x024B	; 0x80024b <wer+0x1>
      d0e:	88 97       	sbiw	r24, 0x28	; 40
 							PORTE &= ~(1<<0);
      d10:	21 f4       	brne	.+8      	; 0xd1a <main+0x3f4>
@@ -2019,19 +2019,19 @@ void padd(int green_led_value, int red_led_value){
      d18:	98 da       	rcall	.-2768   	; 0x24a <closer>
 						}
 						wer++;
-     d1a:	80 91 4a 02 	lds	r24, 0x024A	; 0x80024a <__data_end>
-     d1e:	90 91 4b 02 	lds	r25, 0x024B	; 0x80024b <__data_end+0x1>
+     d1a:	80 91 4a 02 	lds	r24, 0x024A	; 0x80024a <wer>
+     d1e:	90 91 4b 02 	lds	r25, 0x024B	; 0x80024b <wer+0x1>
      d22:	01 96       	adiw	r24, 0x01	; 1
-     d24:	90 93 4b 02 	sts	0x024B, r25	; 0x80024b <__data_end+0x1>
-     d28:	80 93 4a 02 	sts	0x024A, r24	; 0x80024a <__data_end>
+     d24:	90 93 4b 02 	sts	0x024B, r25	; 0x80024b <wer+0x1>
+     d28:	80 93 4a 02 	sts	0x024A, r24	; 0x80024a <wer>
 						PORTH |= (1<<enable);
 						_delay_ms(1);
 					}
 					//light red led
 					wer = 0;
 					while (wer < 60)
-     d2c:	80 91 4a 02 	lds	r24, 0x024A	; 0x80024a <__data_end>
-     d30:	90 91 4b 02 	lds	r25, 0x024B	; 0x80024b <__data_end+0x1>
+     d2c:	80 91 4a 02 	lds	r24, 0x024A	; 0x80024a <wer>
+     d30:	90 91 4b 02 	lds	r25, 0x024B	; 0x80024b <wer+0x1>
      d34:	cc 97       	sbiw	r24, 0x3c	; 60
      d36:	24 f2       	brlt	.-120    	; 0xcc0 <main+0x39a>
 							closer();
@@ -2052,8 +2052,8 @@ void padd(int green_led_value, int red_led_value){
      d42:	7c 99       	sbic	0x0f, 4	; 15
 			diplayOnScreen( counter );
      d44:	c7 c1       	rjmp	.+910    	; 0x10d4 <__EEPROM_REGION_LENGTH__+0xd4>
-     d46:	80 91 00 02 	lds	r24, 0x0200	; 0x800200 <__DATA_REGION_ORIGIN__>
-     d4a:	90 91 01 02 	lds	r25, 0x0201	; 0x800201 <__DATA_REGION_ORIGIN__+0x1>
+     d46:	80 91 48 02 	lds	r24, 0x0248	; 0x800248 <__data_end>
+     d4a:	90 91 49 02 	lds	r25, 0x0249	; 0x800249 <__data_end+0x1>
      d4e:	eb d9       	rcall	.-3114   	; 0x126 <diplayOnScreen>
 			opener();
      d50:	80 db       	rcall	.-2304   	; 0x452 <opener>
@@ -2063,7 +2063,7 @@ void padd(int green_led_value, int red_led_value){
      d5a:	23 c0       	rjmp	.+70     	; 0xda2 <main+0x47c>
      d5c:	fc 01       	movw	r30, r24
 				PORTJ = word[f];
-     d5e:	ef 5b       	subi	r30, 0xBF	; 191
+     d5e:	e1 5c       	subi	r30, 0xC1	; 193
      d60:	fd 4f       	sbci	r31, 0xFD	; 253
      d62:	80 81       	ld	r24, Z
      d64:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
@@ -2117,7 +2117,7 @@ void padd(int green_led_value, int red_led_value){
      db8:	23 c0       	rjmp	.+70     	; 0xe00 <main+0x4da>
      dba:	fc 01       	movw	r30, r24
 				PORTJ = word6[x];
-     dbc:	ec 5e       	subi	r30, 0xEC	; 236
+     dbc:	ee 5e       	subi	r30, 0xEE	; 238
      dbe:	fd 4f       	sbci	r31, 0xFD	; 253
      dc0:	80 81       	ld	r24, Z
      dc2:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
@@ -2171,7 +2171,7 @@ void padd(int green_led_value, int red_led_value){
      e16:	23 c0       	rjmp	.+70     	; 0xe5e <main+0x538>
      e18:	fc 01       	movw	r30, r24
 				PORTJ = word3[d];
-     e1a:	e1 5d       	subi	r30, 0xD1	; 209
+     e1a:	e3 5d       	subi	r30, 0xD3	; 211
      e1c:	fd 4f       	sbci	r31, 0xFD	; 253
      e1e:	80 81       	ld	r24, Z
      e20:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
@@ -2225,7 +2225,7 @@ void padd(int green_led_value, int red_led_value){
      e74:	23 c0       	rjmp	.+70     	; 0xebc <main+0x596>
      e76:	fc 01       	movw	r30, r24
 				PORTJ = word4[o];
-     e78:	ea 5d       	subi	r30, 0xDA	; 218
+     e78:	ec 5d       	subi	r30, 0xDC	; 220
      e7a:	fd 4f       	sbci	r31, 0xFD	; 253
      e7c:	80 81       	ld	r24, Z
      e7e:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
@@ -2285,7 +2285,7 @@ void padd(int green_led_value, int red_led_value){
      edc:	23 c0       	rjmp	.+70     	; 0xf24 <main+0x5fe>
      ede:	fc 01       	movw	r30, r24
 				PORTJ = word[f];
-     ee0:	ef 5b       	subi	r30, 0xBF	; 191
+     ee0:	e1 5c       	subi	r30, 0xC1	; 193
      ee2:	fd 4f       	sbci	r31, 0xFD	; 253
      ee4:	80 81       	ld	r24, Z
      ee6:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
@@ -2339,7 +2339,7 @@ void padd(int green_led_value, int red_led_value){
      f3a:	23 c0       	rjmp	.+70     	; 0xf82 <main+0x65c>
      f3c:	fc 01       	movw	r30, r24
 				PORTJ = word6[x];
-     f3e:	ec 5e       	subi	r30, 0xEC	; 236
+     f3e:	ee 5e       	subi	r30, 0xEE	; 238
      f40:	fd 4f       	sbci	r31, 0xFD	; 253
      f42:	80 81       	ld	r24, Z
      f44:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
@@ -2393,7 +2393,7 @@ void padd(int green_led_value, int red_led_value){
      f98:	23 c0       	rjmp	.+70     	; 0xfe0 <main+0x6ba>
      f9a:	fc 01       	movw	r30, r24
 				PORTJ = word3[d];
-     f9c:	e1 5d       	subi	r30, 0xD1	; 209
+     f9c:	e3 5d       	subi	r30, 0xD3	; 211
      f9e:	fd 4f       	sbci	r31, 0xFD	; 253
      fa0:	80 81       	ld	r24, Z
      fa2:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
@@ -2447,7 +2447,7 @@ void padd(int green_led_value, int red_led_value){
      ff6:	23 c0       	rjmp	.+70     	; 0x103e <__EEPROM_REGION_LENGTH__+0x3e>
      ff8:	fc 01       	movw	r30, r24
 				PORTJ = word4[o];
-     ffa:	ea 5d       	subi	r30, 0xDA	; 218
+     ffa:	ec 5d       	subi	r30, 0xDC	; 220
      ffc:	fd 4f       	sbci	r31, 0xFD	; 253
      ffe:	80 81       	ld	r24, Z
     1000:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
@@ -2490,20 +2490,20 @@ void padd(int green_led_value, int red_led_value){
     1046:	88 30       	cpi	r24, 0x08	; 8
     1048:	91 05       	cpc	r25, r1
     104a:	b4 f2       	brlt	.-84     	; 0xff8 <main+0x6d2>
-    104c:	10 92 4b 02 	sts	0x024B, r1	; 0x80024b <__data_end+0x1>
+    104c:	10 92 4b 02 	sts	0x024B, r1	; 0x80024b <wer+0x1>
 				_delay_ms(1);
 				PORTH |= (1<<enable);
 				_delay_ms(1);
 			}
 			//light red led
 			wer = 0;
-    1050:	10 92 4a 02 	sts	0x024A, r1	; 0x80024a <__data_end>
+    1050:	10 92 4a 02 	sts	0x024A, r1	; 0x80024a <wer>
 			while (wer < 60)
     1054:	36 c0       	rjmp	.+108    	; 0x10c2 <__EEPROM_REGION_LENGTH__+0xc2>
 			{
 				diplayOnScreen( counter );
-    1056:	80 91 00 02 	lds	r24, 0x0200	; 0x800200 <__DATA_REGION_ORIGIN__>
-    105a:	90 91 01 02 	lds	r25, 0x0201	; 0x800201 <__DATA_REGION_ORIGIN__+0x1>
+    1056:	80 91 48 02 	lds	r24, 0x0248	; 0x800248 <__data_end>
+    105a:	90 91 49 02 	lds	r25, 0x0249	; 0x800249 <__data_end+0x1>
     105e:	63 d8       	rcall	.-3898   	; 0x126 <diplayOnScreen>
     1060:	95 b1       	in	r25, 0x05	; 5
 				PORTB ^= (1<<5);
@@ -2533,8 +2533,8 @@ void padd(int green_led_value, int red_led_value){
 					_delay_ms(100);
 				}
 				if (wer == 40){
-    109c:	80 91 4a 02 	lds	r24, 0x024A	; 0x80024a <__data_end>
-    10a0:	90 91 4b 02 	lds	r25, 0x024B	; 0x80024b <__data_end+0x1>
+    109c:	80 91 4a 02 	lds	r24, 0x024A	; 0x80024a <wer>
+    10a0:	90 91 4b 02 	lds	r25, 0x024B	; 0x80024b <wer+0x1>
     10a4:	88 97       	sbiw	r24, 0x28	; 40
     10a6:	21 f4       	brne	.+8      	; 0x10b0 <__EEPROM_REGION_LENGTH__+0xb0>
 					PORTE &= ~(1<<0);
@@ -2544,21 +2544,21 @@ void padd(int green_led_value, int red_led_value){
 					//close doors
 					closer();
     10ae:	cd d8       	rcall	.-3686   	; 0x24a <closer>
-    10b0:	80 91 4a 02 	lds	r24, 0x024A	; 0x80024a <__data_end>
+    10b0:	80 91 4a 02 	lds	r24, 0x024A	; 0x80024a <wer>
 				}
 				wer++;
-    10b4:	90 91 4b 02 	lds	r25, 0x024B	; 0x80024b <__data_end+0x1>
+    10b4:	90 91 4b 02 	lds	r25, 0x024B	; 0x80024b <wer+0x1>
     10b8:	01 96       	adiw	r24, 0x01	; 1
-    10ba:	90 93 4b 02 	sts	0x024B, r25	; 0x80024b <__data_end+0x1>
-    10be:	80 93 4a 02 	sts	0x024A, r24	; 0x80024a <__data_end>
-    10c2:	80 91 4a 02 	lds	r24, 0x024A	; 0x80024a <__data_end>
+    10ba:	90 93 4b 02 	sts	0x024B, r25	; 0x80024b <wer+0x1>
+    10be:	80 93 4a 02 	sts	0x024A, r24	; 0x80024a <wer>
+    10c2:	80 91 4a 02 	lds	r24, 0x024A	; 0x80024a <wer>
 				PORTH |= (1<<enable);
 				_delay_ms(1);
 			}
 			//light red led
 			wer = 0;
 			while (wer < 60)
-    10c6:	90 91 4b 02 	lds	r25, 0x024B	; 0x80024b <__data_end+0x1>
+    10c6:	90 91 4b 02 	lds	r25, 0x024B	; 0x80024b <wer+0x1>
     10ca:	cc 97       	sbiw	r24, 0x3c	; 60
     10cc:	24 f2       	brlt	.-120    	; 0x1056 <__EEPROM_REGION_LENGTH__+0x56>
     10ce:	85 b1       	in	r24, 0x05	; 5
@@ -2579,8 +2579,8 @@ void padd(int green_led_value, int red_led_value){
     10d8:	7c 99       	sbic	0x0f, 4	; 15
 			diplayOnScreen( counter );
     10da:	c9 c1       	rjmp	.+914    	; 0x146e <__EEPROM_REGION_LENGTH__+0x46e>
-    10dc:	80 91 00 02 	lds	r24, 0x0200	; 0x800200 <__DATA_REGION_ORIGIN__>
-    10e0:	90 91 01 02 	lds	r25, 0x0201	; 0x800201 <__DATA_REGION_ORIGIN__+0x1>
+    10dc:	80 91 48 02 	lds	r24, 0x0248	; 0x800248 <__data_end>
+    10e0:	90 91 49 02 	lds	r25, 0x0249	; 0x800249 <__data_end+0x1>
     10e4:	20 d8       	rcall	.-4032   	; 0x126 <diplayOnScreen>
 			opener();
     10e6:	b5 d9       	rcall	.-3222   	; 0x452 <opener>
@@ -2590,7 +2590,7 @@ void padd(int green_led_value, int red_led_value){
     10f0:	23 c0       	rjmp	.+70     	; 0x1138 <__EEPROM_REGION_LENGTH__+0x138>
     10f2:	fc 01       	movw	r30, r24
 				PORTJ = word5[f];
-    10f4:	e3 5e       	subi	r30, 0xE3	; 227
+    10f4:	e5 5e       	subi	r30, 0xE5	; 229
     10f6:	fd 4f       	sbci	r31, 0xFD	; 253
     10f8:	80 81       	ld	r24, Z
     10fa:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
@@ -2644,7 +2644,7 @@ void padd(int green_led_value, int red_led_value){
     114e:	23 c0       	rjmp	.+70     	; 0x1196 <__EEPROM_REGION_LENGTH__+0x196>
     1150:	fc 01       	movw	r30, r24
 				PORTJ = word2[x];
-    1152:	e8 5c       	subi	r30, 0xC8	; 200
+    1152:	ea 5c       	subi	r30, 0xCA	; 202
     1154:	fd 4f       	sbci	r31, 0xFD	; 253
     1156:	80 81       	ld	r24, Z
     1158:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
@@ -2698,7 +2698,7 @@ void padd(int green_led_value, int red_led_value){
     11ac:	23 c0       	rjmp	.+70     	; 0x11f4 <__EEPROM_REGION_LENGTH__+0x1f4>
     11ae:	fc 01       	movw	r30, r24
 				PORTJ = word3[d];
-    11b0:	e1 5d       	subi	r30, 0xD1	; 209
+    11b0:	e3 5d       	subi	r30, 0xD3	; 211
     11b2:	fd 4f       	sbci	r31, 0xFD	; 253
     11b4:	80 81       	ld	r24, Z
     11b6:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
@@ -2752,7 +2752,7 @@ void padd(int green_led_value, int red_led_value){
     120a:	23 c0       	rjmp	.+70     	; 0x1252 <__EEPROM_REGION_LENGTH__+0x252>
     120c:	fc 01       	movw	r30, r24
 				PORTJ = word4[o];
-    120e:	ea 5d       	subi	r30, 0xDA	; 218
+    120e:	ec 5d       	subi	r30, 0xDC	; 220
     1210:	fd 4f       	sbci	r31, 0xFD	; 253
     1212:	80 81       	ld	r24, Z
     1214:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
@@ -2812,7 +2812,7 @@ void padd(int green_led_value, int red_led_value){
     1272:	23 c0       	rjmp	.+70     	; 0x12ba <__EEPROM_REGION_LENGTH__+0x2ba>
     1274:	fc 01       	movw	r30, r24
 				PORTJ = word5[f];
-    1276:	e3 5e       	subi	r30, 0xE3	; 227
+    1276:	e5 5e       	subi	r30, 0xE5	; 229
     1278:	fd 4f       	sbci	r31, 0xFD	; 253
     127a:	80 81       	ld	r24, Z
     127c:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
@@ -2866,7 +2866,7 @@ void padd(int green_led_value, int red_led_value){
     12d0:	23 c0       	rjmp	.+70     	; 0x1318 <__EEPROM_REGION_LENGTH__+0x318>
     12d2:	fc 01       	movw	r30, r24
 				PORTJ = word2[x];
-    12d4:	e8 5c       	subi	r30, 0xC8	; 200
+    12d4:	ea 5c       	subi	r30, 0xCA	; 202
     12d6:	fd 4f       	sbci	r31, 0xFD	; 253
     12d8:	80 81       	ld	r24, Z
     12da:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
@@ -2920,7 +2920,7 @@ void padd(int green_led_value, int red_led_value){
     132e:	23 c0       	rjmp	.+70     	; 0x1376 <__EEPROM_REGION_LENGTH__+0x376>
     1330:	fc 01       	movw	r30, r24
 				PORTJ = word3[d];
-    1332:	e1 5d       	subi	r30, 0xD1	; 209
+    1332:	e3 5d       	subi	r30, 0xD3	; 211
     1334:	fd 4f       	sbci	r31, 0xFD	; 253
     1336:	80 81       	ld	r24, Z
     1338:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
@@ -2974,7 +2974,7 @@ void padd(int green_led_value, int red_led_value){
     138c:	23 c0       	rjmp	.+70     	; 0x13d4 <__EEPROM_REGION_LENGTH__+0x3d4>
     138e:	fc 01       	movw	r30, r24
 				PORTJ = word4[o];
-    1390:	ea 5d       	subi	r30, 0xDA	; 218
+    1390:	ec 5d       	subi	r30, 0xDC	; 220
     1392:	fd 4f       	sbci	r31, 0xFD	; 253
     1394:	80 81       	ld	r24, Z
     1396:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
@@ -3017,20 +3017,20 @@ void padd(int green_led_value, int red_led_value){
     13dc:	88 30       	cpi	r24, 0x08	; 8
     13de:	91 05       	cpc	r25, r1
     13e0:	b4 f2       	brlt	.-84     	; 0x138e <__EEPROM_REGION_LENGTH__+0x38e>
-    13e2:	10 92 4b 02 	sts	0x024B, r1	; 0x80024b <__data_end+0x1>
+    13e2:	10 92 4b 02 	sts	0x024B, r1	; 0x80024b <wer+0x1>
 				_delay_ms(1);
 				PORTH |= (1<<enable);
 				_delay_ms(1);
 			}
 			//light red led
 			wer = 0;
-    13e6:	10 92 4a 02 	sts	0x024A, r1	; 0x80024a <__data_end>
+    13e6:	10 92 4a 02 	sts	0x024A, r1	; 0x80024a <wer>
     13ea:	38 c0       	rjmp	.+112    	; 0x145c <__EEPROM_REGION_LENGTH__+0x45c>
 			while (wer < 60)
-    13ec:	80 91 00 02 	lds	r24, 0x0200	; 0x800200 <__DATA_REGION_ORIGIN__>
+    13ec:	80 91 48 02 	lds	r24, 0x0248	; 0x800248 <__data_end>
 			{
 				diplayOnScreen( counter );
-    13f0:	90 91 01 02 	lds	r25, 0x0201	; 0x800201 <__DATA_REGION_ORIGIN__+0x1>
+    13f0:	90 91 49 02 	lds	r25, 0x0249	; 0x800249 <__data_end+0x1>
     13f4:	0e 94 93 00 	call	0x126	; 0x126 <diplayOnScreen>
     13f8:	95 b1       	in	r25, 0x05	; 5
 				PORTB ^= (1<<4);
@@ -3056,12 +3056,12 @@ void padd(int green_led_value, int red_led_value){
     142c:	90 91 57 02 	lds	r25, 0x0257	; 0x800257 <i+0x1>
     1430:	0a 97       	sbiw	r24, 0x0a	; 10
     1432:	5c f3       	brlt	.-42     	; 0x140a <__EEPROM_REGION_LENGTH__+0x40a>
-    1434:	80 91 4a 02 	lds	r24, 0x024A	; 0x80024a <__data_end>
+    1434:	80 91 4a 02 	lds	r24, 0x024A	; 0x80024a <wer>
 				{
 					_delay_ms(100);
 				}
 				if (wer == 40){
-    1438:	90 91 4b 02 	lds	r25, 0x024B	; 0x80024b <__data_end+0x1>
+    1438:	90 91 4b 02 	lds	r25, 0x024B	; 0x80024b <wer+0x1>
     143c:	88 97       	sbiw	r24, 0x28	; 40
     143e:	29 f4       	brne	.+10     	; 0x144a <__EEPROM_REGION_LENGTH__+0x44a>
     1440:	8e b1       	in	r24, 0x0e	; 14
@@ -3071,21 +3071,21 @@ void padd(int green_led_value, int red_led_value){
     1446:	0e 94 25 01 	call	0x24a	; 0x24a <closer>
 					//close doors
 					closer();
-    144a:	80 91 4a 02 	lds	r24, 0x024A	; 0x80024a <__data_end>
+    144a:	80 91 4a 02 	lds	r24, 0x024A	; 0x80024a <wer>
 				}
 				wer++;
-    144e:	90 91 4b 02 	lds	r25, 0x024B	; 0x80024b <__data_end+0x1>
+    144e:	90 91 4b 02 	lds	r25, 0x024B	; 0x80024b <wer+0x1>
     1452:	01 96       	adiw	r24, 0x01	; 1
-    1454:	90 93 4b 02 	sts	0x024B, r25	; 0x80024b <__data_end+0x1>
-    1458:	80 93 4a 02 	sts	0x024A, r24	; 0x80024a <__data_end>
-    145c:	80 91 4a 02 	lds	r24, 0x024A	; 0x80024a <__data_end>
+    1454:	90 93 4b 02 	sts	0x024B, r25	; 0x80024b <wer+0x1>
+    1458:	80 93 4a 02 	sts	0x024A, r24	; 0x80024a <wer>
+    145c:	80 91 4a 02 	lds	r24, 0x024A	; 0x80024a <wer>
 				PORTH |= (1<<enable);
 				_delay_ms(1);
 			}
 			//light red led
 			wer = 0;
 			while (wer < 60)
-    1460:	90 91 4b 02 	lds	r25, 0x024B	; 0x80024b <__data_end+0x1>
+    1460:	90 91 4b 02 	lds	r25, 0x024B	; 0x80024b <wer+0x1>
     1464:	cc 97       	sbiw	r24, 0x3c	; 60
     1466:	14 f2       	brlt	.-124    	; 0x13ec <__EEPROM_REGION_LENGTH__+0x3ec>
     1468:	85 b1       	in	r24, 0x05	; 5
@@ -3105,9 +3105,9 @@ void padd(int green_led_value, int red_led_value){
     1472:	7c 99       	sbic	0x0f, 4	; 15
 		if((PINF & (1<<4)) == 0){
     1474:	cc c1       	rjmp	.+920    	; 0x180e <__EEPROM_REGION_LENGTH__+0x80e>
-    1476:	80 91 00 02 	lds	r24, 0x0200	; 0x800200 <__DATA_REGION_ORIGIN__>
+    1476:	80 91 48 02 	lds	r24, 0x0248	; 0x800248 <__data_end>
 			diplayOnScreen( counter );
-    147a:	90 91 01 02 	lds	r25, 0x0201	; 0x800201 <__DATA_REGION_ORIGIN__+0x1>
+    147a:	90 91 49 02 	lds	r25, 0x0249	; 0x800249 <__data_end+0x1>
     147e:	0e 94 93 00 	call	0x126	; 0x126 <diplayOnScreen>
     1482:	0e 94 29 02 	call	0x452	; 0x452 <opener>
 			opener();
@@ -3117,7 +3117,7 @@ void padd(int green_led_value, int red_led_value){
     148e:	23 c0       	rjmp	.+70     	; 0x14d6 <__EEPROM_REGION_LENGTH__+0x4d6>
     1490:	fc 01       	movw	r30, r24
 				PORTJ = word[f];
-    1492:	ef 5b       	subi	r30, 0xBF	; 191
+    1492:	e1 5c       	subi	r30, 0xC1	; 193
     1494:	fd 4f       	sbci	r31, 0xFD	; 253
     1496:	80 81       	ld	r24, Z
     1498:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
@@ -3171,7 +3171,7 @@ void padd(int green_led_value, int red_led_value){
     14ec:	23 c0       	rjmp	.+70     	; 0x1534 <__EEPROM_REGION_LENGTH__+0x534>
     14ee:	fc 01       	movw	r30, r24
 				PORTJ = word2[x];
-    14f0:	e8 5c       	subi	r30, 0xC8	; 200
+    14f0:	ea 5c       	subi	r30, 0xCA	; 202
     14f2:	fd 4f       	sbci	r31, 0xFD	; 253
     14f4:	80 81       	ld	r24, Z
     14f6:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
@@ -3225,7 +3225,7 @@ void padd(int green_led_value, int red_led_value){
     154a:	23 c0       	rjmp	.+70     	; 0x1592 <__EEPROM_REGION_LENGTH__+0x592>
     154c:	fc 01       	movw	r30, r24
 				PORTJ = word7[d];
-    154e:	e5 5f       	subi	r30, 0xF5	; 245
+    154e:	e7 5f       	subi	r30, 0xF7	; 247
     1550:	fd 4f       	sbci	r31, 0xFD	; 253
     1552:	80 81       	ld	r24, Z
     1554:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
@@ -3279,7 +3279,7 @@ void padd(int green_led_value, int red_led_value){
     15a8:	23 c0       	rjmp	.+70     	; 0x15f0 <__EEPROM_REGION_LENGTH__+0x5f0>
     15aa:	fc 01       	movw	r30, r24
 				PORTJ = word4[o];
-    15ac:	ea 5d       	subi	r30, 0xDA	; 218
+    15ac:	ec 5d       	subi	r30, 0xDC	; 220
     15ae:	fd 4f       	sbci	r31, 0xFD	; 253
     15b0:	80 81       	ld	r24, Z
     15b2:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
@@ -3339,7 +3339,7 @@ void padd(int green_led_value, int red_led_value){
     1612:	23 c0       	rjmp	.+70     	; 0x165a <__EEPROM_REGION_LENGTH__+0x65a>
     1614:	fc 01       	movw	r30, r24
 				PORTJ = word[f];
-    1616:	ef 5b       	subi	r30, 0xBF	; 191
+    1616:	e1 5c       	subi	r30, 0xC1	; 193
     1618:	fd 4f       	sbci	r31, 0xFD	; 253
     161a:	80 81       	ld	r24, Z
     161c:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
@@ -3393,7 +3393,7 @@ void padd(int green_led_value, int red_led_value){
     1670:	23 c0       	rjmp	.+70     	; 0x16b8 <__EEPROM_REGION_LENGTH__+0x6b8>
     1672:	fc 01       	movw	r30, r24
 				PORTJ = word2[x];
-    1674:	e8 5c       	subi	r30, 0xC8	; 200
+    1674:	ea 5c       	subi	r30, 0xCA	; 202
     1676:	fd 4f       	sbci	r31, 0xFD	; 253
     1678:	80 81       	ld	r24, Z
     167a:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
@@ -3447,7 +3447,7 @@ void padd(int green_led_value, int red_led_value){
     16ce:	23 c0       	rjmp	.+70     	; 0x1716 <__EEPROM_REGION_LENGTH__+0x716>
     16d0:	fc 01       	movw	r30, r24
 				PORTJ = word7[d];
-    16d2:	e5 5f       	subi	r30, 0xF5	; 245
+    16d2:	e7 5f       	subi	r30, 0xF7	; 247
     16d4:	fd 4f       	sbci	r31, 0xFD	; 253
     16d6:	80 81       	ld	r24, Z
     16d8:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
@@ -3501,7 +3501,7 @@ void padd(int green_led_value, int red_led_value){
     172c:	23 c0       	rjmp	.+70     	; 0x1774 <__EEPROM_REGION_LENGTH__+0x774>
     172e:	fc 01       	movw	r30, r24
 				PORTJ = word4[o];
-    1730:	ea 5d       	subi	r30, 0xDA	; 218
+    1730:	ec 5d       	subi	r30, 0xDC	; 220
     1732:	fd 4f       	sbci	r31, 0xFD	; 253
     1734:	80 81       	ld	r24, Z
     1736:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
@@ -3544,20 +3544,20 @@ void padd(int green_led_value, int red_led_value){
     177c:	88 30       	cpi	r24, 0x08	; 8
     177e:	91 05       	cpc	r25, r1
     1780:	b4 f2       	brlt	.-84     	; 0x172e <__EEPROM_REGION_LENGTH__+0x72e>
-    1782:	10 92 4b 02 	sts	0x024B, r1	; 0x80024b <__data_end+0x1>
+    1782:	10 92 4b 02 	sts	0x024B, r1	; 0x80024b <wer+0x1>
 				_delay_ms(1);
 				PORTH |= (1<<enable);
 				_delay_ms(1);
 			}
 			//light red led
 			wer = 0;
-    1786:	10 92 4a 02 	sts	0x024A, r1	; 0x80024a <__data_end>
+    1786:	10 92 4a 02 	sts	0x024A, r1	; 0x80024a <wer>
     178a:	38 c0       	rjmp	.+112    	; 0x17fc <__EEPROM_REGION_LENGTH__+0x7fc>
 			while (wer < 60)
-    178c:	80 91 00 02 	lds	r24, 0x0200	; 0x800200 <__DATA_REGION_ORIGIN__>
+    178c:	80 91 48 02 	lds	r24, 0x0248	; 0x800248 <__data_end>
 			{
 				diplayOnScreen( counter );
-    1790:	90 91 01 02 	lds	r25, 0x0201	; 0x800201 <__DATA_REGION_ORIGIN__+0x1>
+    1790:	90 91 49 02 	lds	r25, 0x0249	; 0x800249 <__data_end+0x1>
     1794:	0e 94 93 00 	call	0x126	; 0x126 <diplayOnScreen>
     1798:	95 b1       	in	r25, 0x05	; 5
 				PORTB ^= (1<<6);
@@ -3583,12 +3583,12 @@ void padd(int green_led_value, int red_led_value){
     17cc:	90 91 57 02 	lds	r25, 0x0257	; 0x800257 <i+0x1>
     17d0:	0a 97       	sbiw	r24, 0x0a	; 10
     17d2:	5c f3       	brlt	.-42     	; 0x17aa <__EEPROM_REGION_LENGTH__+0x7aa>
-    17d4:	80 91 4a 02 	lds	r24, 0x024A	; 0x80024a <__data_end>
+    17d4:	80 91 4a 02 	lds	r24, 0x024A	; 0x80024a <wer>
 				{
 					_delay_ms(100);
 				}
 				if (wer == 40){
-    17d8:	90 91 4b 02 	lds	r25, 0x024B	; 0x80024b <__data_end+0x1>
+    17d8:	90 91 4b 02 	lds	r25, 0x024B	; 0x80024b <wer+0x1>
     17dc:	88 97       	sbiw	r24, 0x28	; 40
     17de:	29 f4       	brne	.+10     	; 0x17ea <__EEPROM_REGION_LENGTH__+0x7ea>
     17e0:	8e b1       	in	r24, 0x0e	; 14
@@ -3598,21 +3598,21 @@ void padd(int green_led_value, int red_led_value){
     17e6:	0e 94 25 01 	call	0x24a	; 0x24a <closer>
 					//close doors
 					closer();
-    17ea:	80 91 4a 02 	lds	r24, 0x024A	; 0x80024a <__data_end>
+    17ea:	80 91 4a 02 	lds	r24, 0x024A	; 0x80024a <wer>
 				}
 				wer++;
-    17ee:	90 91 4b 02 	lds	r25, 0x024B	; 0x80024b <__data_end+0x1>
+    17ee:	90 91 4b 02 	lds	r25, 0x024B	; 0x80024b <wer+0x1>
     17f2:	01 96       	adiw	r24, 0x01	; 1
-    17f4:	90 93 4b 02 	sts	0x024B, r25	; 0x80024b <__data_end+0x1>
-    17f8:	80 93 4a 02 	sts	0x024A, r24	; 0x80024a <__data_end>
-    17fc:	80 91 4a 02 	lds	r24, 0x024A	; 0x80024a <__data_end>
+    17f4:	90 93 4b 02 	sts	0x024B, r25	; 0x80024b <wer+0x1>
+    17f8:	80 93 4a 02 	sts	0x024A, r24	; 0x80024a <wer>
+    17fc:	80 91 4a 02 	lds	r24, 0x024A	; 0x80024a <wer>
 				PORTH |= (1<<enable);
 				_delay_ms(1);
 			}
 			//light red led
 			wer = 0;
 			while (wer < 60)
-    1800:	90 91 4b 02 	lds	r25, 0x024B	; 0x80024b <__data_end+0x1>
+    1800:	90 91 4b 02 	lds	r25, 0x024B	; 0x80024b <wer+0x1>
     1804:	cc 97       	sbiw	r24, 0x3c	; 60
     1806:	14 f2       	brlt	.-124    	; 0x178c <__EEPROM_REGION_LENGTH__+0x78c>
     1808:	85 b1       	in	r24, 0x05	; 5
@@ -3632,9 +3632,9 @@ void padd(int green_led_value, int red_led_value){
     1812:	7d 99       	sbic	0x0f, 5	; 15
 		if((PINF & (1<<5)) == 0){
     1814:	cb c1       	rjmp	.+918    	; 0x1bac <__EEPROM_REGION_LENGTH__+0xbac>
-    1816:	80 91 00 02 	lds	r24, 0x0200	; 0x800200 <__DATA_REGION_ORIGIN__>
+    1816:	80 91 48 02 	lds	r24, 0x0248	; 0x800248 <__data_end>
 			diplayOnScreen( counter );
-    181a:	90 91 01 02 	lds	r25, 0x0201	; 0x800201 <__DATA_REGION_ORIGIN__+0x1>
+    181a:	90 91 49 02 	lds	r25, 0x0249	; 0x800249 <__data_end+0x1>
     181e:	0e 94 93 00 	call	0x126	; 0x126 <diplayOnScreen>
     1822:	0e 94 29 02 	call	0x452	; 0x452 <opener>
 			opener();
@@ -3644,7 +3644,7 @@ void padd(int green_led_value, int red_led_value){
     182e:	23 c0       	rjmp	.+70     	; 0x1876 <__EEPROM_REGION_LENGTH__+0x876>
     1830:	fc 01       	movw	r30, r24
 				PORTJ = word[f];
-    1832:	ef 5b       	subi	r30, 0xBF	; 191
+    1832:	e1 5c       	subi	r30, 0xC1	; 193
     1834:	fd 4f       	sbci	r31, 0xFD	; 253
     1836:	80 81       	ld	r24, Z
     1838:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
@@ -3698,7 +3698,7 @@ void padd(int green_led_value, int red_led_value){
     188c:	23 c0       	rjmp	.+70     	; 0x18d4 <__EEPROM_REGION_LENGTH__+0x8d4>
     188e:	fc 01       	movw	r30, r24
 				PORTJ = word2[x];
-    1890:	e8 5c       	subi	r30, 0xC8	; 200
+    1890:	ea 5c       	subi	r30, 0xCA	; 202
     1892:	fd 4f       	sbci	r31, 0xFD	; 253
     1894:	80 81       	ld	r24, Z
     1896:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
@@ -3752,7 +3752,7 @@ void padd(int green_led_value, int red_led_value){
     18ea:	23 c0       	rjmp	.+70     	; 0x1932 <__EEPROM_REGION_LENGTH__+0x932>
     18ec:	fc 01       	movw	r30, r24
 				PORTJ = word3[d];
-    18ee:	e1 5d       	subi	r30, 0xD1	; 209
+    18ee:	e3 5d       	subi	r30, 0xD3	; 211
     18f0:	fd 4f       	sbci	r31, 0xFD	; 253
     18f2:	80 81       	ld	r24, Z
     18f4:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
@@ -3806,8 +3806,8 @@ void padd(int green_led_value, int red_led_value){
     1948:	23 c0       	rjmp	.+70     	; 0x1990 <__EEPROM_REGION_LENGTH__+0x990>
     194a:	fc 01       	movw	r30, r24
 				PORTJ = word8[o];
-    194c:	ee 5f       	subi	r30, 0xFE	; 254
-    194e:	fd 4f       	sbci	r31, 0xFD	; 253
+    194c:	e0 50       	subi	r30, 0x00	; 0
+    194e:	fe 4f       	sbci	r31, 0xFE	; 254
     1950:	80 81       	ld	r24, Z
     1952:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
     1956:	e2 e0       	ldi	r30, 0x02	; 2
@@ -3866,7 +3866,7 @@ void padd(int green_led_value, int red_led_value){
     19b2:	23 c0       	rjmp	.+70     	; 0x19fa <__EEPROM_REGION_LENGTH__+0x9fa>
     19b4:	fc 01       	movw	r30, r24
 				PORTJ = word[f];
-    19b6:	ef 5b       	subi	r30, 0xBF	; 191
+    19b6:	e1 5c       	subi	r30, 0xC1	; 193
     19b8:	fd 4f       	sbci	r31, 0xFD	; 253
     19ba:	80 81       	ld	r24, Z
     19bc:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
@@ -3920,7 +3920,7 @@ void padd(int green_led_value, int red_led_value){
     1a10:	23 c0       	rjmp	.+70     	; 0x1a58 <__EEPROM_REGION_LENGTH__+0xa58>
     1a12:	fc 01       	movw	r30, r24
 				PORTJ = word2[x];
-    1a14:	e8 5c       	subi	r30, 0xC8	; 200
+    1a14:	ea 5c       	subi	r30, 0xCA	; 202
     1a16:	fd 4f       	sbci	r31, 0xFD	; 253
     1a18:	80 81       	ld	r24, Z
     1a1a:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
@@ -3974,7 +3974,7 @@ void padd(int green_led_value, int red_led_value){
     1a6e:	23 c0       	rjmp	.+70     	; 0x1ab6 <__EEPROM_REGION_LENGTH__+0xab6>
     1a70:	fc 01       	movw	r30, r24
 				PORTJ = word3[d];
-    1a72:	e1 5d       	subi	r30, 0xD1	; 209
+    1a72:	e3 5d       	subi	r30, 0xD3	; 211
     1a74:	fd 4f       	sbci	r31, 0xFD	; 253
     1a76:	80 81       	ld	r24, Z
     1a78:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
@@ -4028,8 +4028,8 @@ void padd(int green_led_value, int red_led_value){
     1acc:	23 c0       	rjmp	.+70     	; 0x1b14 <__EEPROM_REGION_LENGTH__+0xb14>
     1ace:	fc 01       	movw	r30, r24
 				PORTJ = word8[o];
-    1ad0:	ee 5f       	subi	r30, 0xFE	; 254
-    1ad2:	fd 4f       	sbci	r31, 0xFD	; 253
+    1ad0:	e0 50       	subi	r30, 0x00	; 0
+    1ad2:	fe 4f       	sbci	r31, 0xFE	; 254
     1ad4:	80 81       	ld	r24, Z
     1ad6:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <__TEXT_REGION_LENGTH__+0x7c0105>
     1ada:	e2 e0       	ldi	r30, 0x02	; 2
@@ -4071,20 +4071,20 @@ void padd(int green_led_value, int red_led_value){
     1b1c:	88 30       	cpi	r24, 0x08	; 8
     1b1e:	91 05       	cpc	r25, r1
     1b20:	b4 f2       	brlt	.-84     	; 0x1ace <__EEPROM_REGION_LENGTH__+0xace>
-    1b22:	10 92 4b 02 	sts	0x024B, r1	; 0x80024b <__data_end+0x1>
+    1b22:	10 92 4b 02 	sts	0x024B, r1	; 0x80024b <wer+0x1>
 				_delay_ms(1);
 				PORTH |= (1<<enable);
 				_delay_ms(1);
 			}
 			//light red led
 			wer = 0;
-    1b26:	10 92 4a 02 	sts	0x024A, r1	; 0x80024a <__data_end>
+    1b26:	10 92 4a 02 	sts	0x024A, r1	; 0x80024a <wer>
     1b2a:	37 c0       	rjmp	.+110    	; 0x1b9a <__EEPROM_REGION_LENGTH__+0xb9a>
 			while (wer < 60)
-    1b2c:	80 91 00 02 	lds	r24, 0x0200	; 0x800200 <__DATA_REGION_ORIGIN__>
+    1b2c:	80 91 48 02 	lds	r24, 0x0248	; 0x800248 <__data_end>
 			{
 				diplayOnScreen( counter );
-    1b30:	90 91 01 02 	lds	r25, 0x0201	; 0x800201 <__DATA_REGION_ORIGIN__+0x1>
+    1b30:	90 91 49 02 	lds	r25, 0x0249	; 0x800249 <__data_end+0x1>
     1b34:	0e 94 93 00 	call	0x126	; 0x126 <diplayOnScreen>
     1b38:	85 b1       	in	r24, 0x05	; 5
 				PORTB ^= (1<<7);
@@ -4109,12 +4109,12 @@ void padd(int green_led_value, int red_led_value){
     1b6a:	90 91 57 02 	lds	r25, 0x0257	; 0x800257 <i+0x1>
     1b6e:	0a 97       	sbiw	r24, 0x0a	; 10
     1b70:	5c f3       	brlt	.-42     	; 0x1b48 <__EEPROM_REGION_LENGTH__+0xb48>
-    1b72:	80 91 4a 02 	lds	r24, 0x024A	; 0x80024a <__data_end>
+    1b72:	80 91 4a 02 	lds	r24, 0x024A	; 0x80024a <wer>
 				{
 					_delay_ms(100);
 				}
 				if (wer == 40){
-    1b76:	90 91 4b 02 	lds	r25, 0x024B	; 0x80024b <__data_end+0x1>
+    1b76:	90 91 4b 02 	lds	r25, 0x024B	; 0x80024b <wer+0x1>
     1b7a:	88 97       	sbiw	r24, 0x28	; 40
     1b7c:	29 f4       	brne	.+10     	; 0x1b88 <__EEPROM_REGION_LENGTH__+0xb88>
     1b7e:	8e b1       	in	r24, 0x0e	; 14
@@ -4124,21 +4124,21 @@ void padd(int green_led_value, int red_led_value){
     1b84:	0e 94 25 01 	call	0x24a	; 0x24a <closer>
 					//close doors
 					closer();
-    1b88:	80 91 4a 02 	lds	r24, 0x024A	; 0x80024a <__data_end>
+    1b88:	80 91 4a 02 	lds	r24, 0x024A	; 0x80024a <wer>
 				}
 				wer++;
-    1b8c:	90 91 4b 02 	lds	r25, 0x024B	; 0x80024b <__data_end+0x1>
+    1b8c:	90 91 4b 02 	lds	r25, 0x024B	; 0x80024b <wer+0x1>
     1b90:	01 96       	adiw	r24, 0x01	; 1
-    1b92:	90 93 4b 02 	sts	0x024B, r25	; 0x80024b <__data_end+0x1>
-    1b96:	80 93 4a 02 	sts	0x024A, r24	; 0x80024a <__data_end>
-    1b9a:	80 91 4a 02 	lds	r24, 0x024A	; 0x80024a <__data_end>
+    1b92:	90 93 4b 02 	sts	0x024B, r25	; 0x80024b <wer+0x1>
+    1b96:	80 93 4a 02 	sts	0x024A, r24	; 0x80024a <wer>
+    1b9a:	80 91 4a 02 	lds	r24, 0x024A	; 0x80024a <wer>
 				PORTH |= (1<<enable);
 				_delay_ms(1);
 			}
 			//light red led
 			wer = 0;
 			while (wer < 60)
-    1b9e:	90 91 4b 02 	lds	r25, 0x024B	; 0x80024b <__data_end+0x1>
+    1b9e:	90 91 4b 02 	lds	r25, 0x024B	; 0x80024b <wer+0x1>
     1ba2:	cc 97       	sbiw	r24, 0x3c	; 60
     1ba4:	1c f2       	brlt	.-122    	; 0x1b2c <__EEPROM_REGION_LENGTH__+0xb2c>
     1ba6:	85 b1       	in	r24, 0x05	; 5

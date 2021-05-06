@@ -395,40 +395,40 @@ END GROUP
  *(.fini0)
                 0x00001c06                _etext = .
 
-.data           0x00800200       0x4a load address 0x00001c06
+.data           0x00800200       0x48 load address 0x00001c06
                 0x00800200                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
- .data.counter  0x00800200        0x2 main.o
-                0x00800200                counter
- .data.word8    0x00800202        0x9 main.o
-                0x00800202                word8
- .data.word7    0x0080020b        0x9 main.o
-                0x0080020b                word7
- .data.word6    0x00800214        0x9 main.o
-                0x00800214                word6
- .data.word5    0x0080021d        0x9 main.o
-                0x0080021d                word5
- .data.word4    0x00800226        0x9 main.o
-                0x00800226                word4
- .data.word3    0x0080022f        0x9 main.o
-                0x0080022f                word3
- .data.word2    0x00800238        0x9 main.o
-                0x00800238                word2
- .data.word     0x00800241        0x9 main.o
-                0x00800241                word
+ .data.word8    0x00800200        0x9 main.o
+                0x00800200                word8
+ .data.word7    0x00800209        0x9 main.o
+                0x00800209                word7
+ .data.word6    0x00800212        0x9 main.o
+                0x00800212                word6
+ .data.word5    0x0080021b        0x9 main.o
+                0x0080021b                word5
+ .data.word4    0x00800224        0x9 main.o
+                0x00800224                word4
+ .data.word3    0x0080022d        0x9 main.o
+                0x0080022d                word3
+ .data.word2    0x00800236        0x9 main.o
+                0x00800236                word2
+ .data.word     0x0080023f        0x9 main.o
+                0x0080023f                word
  *(.gnu.linkonce.d*)
  *(.rodata)
  *(.rodata*)
  *(.gnu.linkonce.r*)
-                0x0080024a                . = ALIGN (0x2)
-                0x0080024a                _edata = .
-                0x0080024a                PROVIDE (__data_end, .)
+                0x00800248                . = ALIGN (0x2)
+                0x00800248                _edata = .
+                0x00800248                PROVIDE (__data_end, .)
 
-.bss            0x0080024a       0x14
-                0x0080024a                PROVIDE (__bss_start, .)
+.bss            0x00800248       0x16
+                0x00800248                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
+ .bss.counter   0x00800248        0x2 main.o
+                0x00800248                counter
  .bss.wer       0x0080024a        0x2 main.o
                 0x0080024a                wer
  *(COMMON)
@@ -444,7 +444,7 @@ END GROUP
                 0x0080025c                u
                 0x0080025e                PROVIDE (__bss_end, .)
                 0x00001c06                __data_load_start = LOADADDR (.data)
-                0x00001c50                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00001c4e                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x0080025e        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
@@ -542,11 +542,11 @@ END GROUP
  *(.debug_frame)
  .debug_frame   0x00000000       0x8c main.o
 
-.debug_str      0x00000000      0x5ea
+.debug_str      0x00000000      0x603
  *(.debug_str)
  .debug_str     0x00000000      0x3e6 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega2560/avr6/crtatmega2560.o
- .debug_str     0x000003e6      0x204 main.o
-                                0x240 (size before relaxing)
+ .debug_str     0x000003e6      0x21d main.o
+                                0x259 (size before relaxing)
 
 .debug_loc      0x00000000     0x23e2
  *(.debug_loc)
